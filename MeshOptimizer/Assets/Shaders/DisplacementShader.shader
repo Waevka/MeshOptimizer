@@ -2,9 +2,9 @@
 	Properties{
 		_Tess("Tessellation", Range(1,32)) = 4
 		_MainTex("Base (RGB)", 2D) = "white" {}
-	_DispTex("Disp Texture", 2D) = "gray" {}
-	_NormalMap("Normalmap", 2D) = "bump" {}
-	_Displacement("Displacement", Range(0, 1.0)) = 0.3
+		_DispTex("Disp Texture", 2D) = "gray" {}
+		_NormalMap("Normalmap", 2D) = "bump" {}
+		_Displacement("Displacement", Range(0, 1.0)) = 0.3
 		_Color("Color", color) = (1,1,1,0)
 		_SpecColor("Spec color", color) = (0.5,0.5,0.5,0.5)
 	}
@@ -37,7 +37,8 @@
 
 	void disp(inout appdata v)
 	{
-		float d = tex2Dlod(_DispTex, float4(v.texcoord.xy,0,0)).r * _Displacement;
+		float d = (tex2Dlod(_DispTex, float4(v.texcoord.xy,0,0)).r - 0.5) * _Displacement;
+		//float d = _Displacement;
 		v.vertex.xyz += v.normal * d;
 	}
 
