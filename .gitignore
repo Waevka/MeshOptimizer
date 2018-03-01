@@ -80,3 +80,23 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 MeshOptimizer/Assets/Models/krag.obj
+*.obj
+MeshOptimizer/Assets/Models/krag.asc
+*.stl
+MeshOptimizer/Assets/Models/Textures/DispTest 1.png
+MeshOptimizer/Assets/Models/Textures/DispTest 2.png
+MeshOptimizer/Assets/Models/Textures/DispTest.png
+MeshOptimizer/Assets/Models/Textures/DispTest3.png
+MeshOptimizer/Assets/Models/Textures/DispTex800.tif
+MeshOptimizer/Assets/Models/Textures/DispTexBlack.tif
+MeshOptimizer/Assets/Models/Textures/DispTexNew.tif
+MeshOptimizer/Assets/Models/Textures/SkyboxB.jpg~
+MeshOptimizer/Assets/Models/Textures/SkyboxA.kra.meta
+MeshOptimizer/Assets/Models/Textures/test.jpg
+MeshOptimizer/Assets/Models/Textures/SkyboxA.jpg~
+MeshOptimizer/Assets/Models/Textures/DispTexNew.png
+MeshOptimizer/Assets/Models/Textures/SkyboxA.kra
+MeshOptimizer/Assets/Models/Textures/test.png
+MeshOptimizer/Assets/Models/Textures/Testbake.png
+MeshOptimizer/Assets/Models/Textures/TestDisp2.png
+MeshOptimizer/Assets/Models/Textures/test2.jpg

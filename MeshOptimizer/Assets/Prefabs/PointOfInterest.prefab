@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222125967416975334}
   - component: {fileID: 114806574097984602}
   m_Layer: 0
-  m_Name: Text
+  m_Name: LabelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1757277552241000
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,8 +73,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4568336082501662}
   - component: {fileID: 114708404709438402}
-  - component: {fileID: 114572825057698428}
   - component: {fileID: 114532733013373336}
+  - component: {fileID: 114196940219420424}
   m_Layer: 0
   m_Name: PointOfInterest
   m_TagString: Untagged
@@ -117,8 +117,8 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1757277552241000}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -151,6 +151,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1757277552241000}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114196940219420424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1792947789365564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60efe3a4a59877e43a6a93b28b03fe10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poi: {fileID: 114708404709438402}
+  backgroundImage: {fileID: 2800000, guid: 55ac1ee437a8bb04aafb67713e791430, type: 3}
+  percentageOnScreen: 0
+  max: {x: 0, y: 0, z: 0}
+  min: {x: 0, y: 0, z: 0}
 --- !u!114 &114440390517443626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,7 +203,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
+  m_DynamicPixelsPerUnit: 10
 --- !u!114 &114532733013373336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,22 +216,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poi: {fileID: 114708404709438402}
---- !u!114 &114572825057698428
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1792947789365564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6189bc20bc85add4bb9ab9b83f2e329a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TopLevelPoiColor: {r: 0, g: 0, b: 0, a: 0}
-  MinLevelPoiColor: {r: 0, g: 0, b: 0, a: 0}
-  TopLevel: 0
-  MinLevel: 0
-  TopLevelPoiList: []
 --- !u!114 &114708404709438402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,12 +236,26 @@ MonoBehaviour:
   active: 1
   DebugMarkerPrefab: {fileID: 1134025308162300, guid: c8b61af6d39b5ce419467f0634f9fed6,
     type: 2}
+  PoiDescription: New POI
   BoundingBoxCenter: {x: 0, y: 0, z: 0}
   BoundingBox:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  currentPercentageOfScreenCovered: 0
+  percentageOnTransition: 0
+  levelChangeTimeout: 0
+  levelChangeTimeoutDelta: 2
+  currentTime: 0
   MeshRendererPoi: {fileID: 23662602350053596}
-  PoiColor: {r: 0, g: 0, b: 0, a: 0}
+  screenSpaceRectangle: {fileID: 114196940219420424}
+  PoiColor:
+    serializedVersion: 2
+    rgba: 4279214350
+  UILabelCanvas: {fileID: 0}
+  LabelPrefab: {fileID: 1963632458431360, guid: edd8032307e812343b4dc778f6373218,
+    type: 2}
+  canvasText: {fileID: 0}
+  isAnimating: 0
 --- !u!114 &114806574097984602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -283,7 +297,7 @@ SphereCollider:
   m_GameObject: {fileID: 1757277552241000}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class PoiManager : MonoBehaviour {
     [SerializeField]
-    private Color TopLevelPoiColor;
+    private Color32 TopLevelPoiColor;
     [SerializeField]
-    private Color MinLevelPoiColor;
+    private Color32 MinLevelPoiColor;
     [SerializeField]
     private int TopLevel = 0;
     [SerializeField]
-    private int MinLevel;
+    private int MinLevel = 0;
     [SerializeField]
     private List<PointOfInterest> TopLevelPoiList;
+    [SerializeField]
+    private bool showLevelBoundaries = true;
 
-    private static PoiManager _instance;
+    private static PoiManager _instance = null;
     public static PoiManager Instance
     {
         get
         {
             if(_instance == null)
             {
-                GameObject g = new GameObject("PoiManager");
-                g.AddComponent<PoiManager>();
-                _instance = g.GetComponent<PoiManager>();
-
+                _instance = FindObjectOfType<PoiManager>();
             }
             return _instance;
         }
@@ -32,6 +31,7 @@ public class PoiManager : MonoBehaviour {
 
     private void Awake()
     {
+        Debug.Log(TopLevelPoiList.Count);
         _instance = this;
         TopLevelPoiList = new List<PointOfInterest>();
     }
@@ -42,15 +42,18 @@ public class PoiManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
 
-    public Color GetColorForGivenPoiLevel(int level)
+    }
+
+    public Color32 GetColorForGivenPoiLevel(int level)
     {
-        Color colorToReturn = MinLevelPoiColor;
+        Color32 colorToReturn = MinLevelPoiColor;
         if(MinLevel != 0)
         {
-            colorToReturn = Color.Lerp(TopLevelPoiColor, MinLevelPoiColor, level / MinLevel);
+            float ratio = (float)level / (float)MinLevel;
+            colorToReturn = Color32.Lerp(TopLevelPoiColor, MinLevelPoiColor, ratio);
+            TopLevelPoiColor.a = 255;
+            MinLevelPoiColor.a = 255;
         }
         return colorToReturn;
     }
@@ -72,7 +75,10 @@ public class PoiManager : MonoBehaviour {
 
     public void SetMinLevel(int level)
     {
-        MinLevel = level;
+        if (level > MinLevel)
+        {
+            MinLevel = level;
+        }
     }
 
     public void RegisterTopLevelPoi(PointOfInterest poi)
@@ -86,5 +92,15 @@ public class PoiManager : MonoBehaviour {
         {
             poi.CalculateBoundingBox(true);
         }
+    }
+
+    public bool GetLevelBoundariesVisibility()
+    {
+        return showLevelBoundaries;
+    }
+
+    public void SetLevelBoundariesVisibility(bool v)
+    {
+        showLevelBoundaries = v;
     }
 }
